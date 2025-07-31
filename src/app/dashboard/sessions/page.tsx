@@ -8,7 +8,7 @@ import SessionList from "@/components/SessionList";
 export default async function AllSessionsPage({
   searchParams,
 }: {
-  searchParams: { page?: string; type?: string; topic?: string };
+  searchParams: Promise<{ page?: string; type?: string; topic?: string }>;
 }) {
   const { userId } = await auth();
 
@@ -16,9 +16,10 @@ export default async function AllSessionsPage({
     redirect("/");
   }
 
-  const page = parseInt(searchParams.page || "1");
-  const type = searchParams.type;
-  const topic = searchParams.topic;
+  const params = await searchParams;
+  const page = parseInt(params.page || "1");
+  const type = params.type;
+  const topic = params.topic;
   const limit = 10;
   const offset = (page - 1) * limit;
 

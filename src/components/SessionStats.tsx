@@ -12,13 +12,6 @@ export default function SessionStats({ sessions }: SessionStatsProps) {
   
   // Get unique topics
   const uniqueTopics = [...new Set(sessions.map(s => s.topic))];
-  
-  // Get recent activity (last 7 days)
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  const recentSessions = sessions.filter(s => 
-    new Date(s.created_at) > sevenDaysAgo
-  ).length;
 
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

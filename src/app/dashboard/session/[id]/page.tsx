@@ -9,7 +9,7 @@ import TopicProgress from "@/components/TopicProgress";
 export default async function SessionDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { userId } = await auth();
 
@@ -17,7 +17,8 @@ export default async function SessionDetailPage({
     redirect("/");
   }
 
-  const session = await getStudySessionById(params.id, userId);
+  const { id } = await params;
+  const session = await getStudySessionById(id, userId);
 
   if (!session) {
     redirect("/dashboard");

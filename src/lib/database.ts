@@ -5,7 +5,7 @@ export async function saveStudySession(
   userId: string,
   topic: string,
   type: 'explain' | 'quiz' | 'flashcard',
-  content: any
+  content: Record<string, unknown>
 ) {
   const { data, error } = await supabase
     .from('study_sessions')
@@ -135,7 +135,15 @@ export async function updateStudyProgress(
   userId: string,
   topic: string,
   sessionType: 'explain' | 'quiz' | 'flashcard',
-  sessionData: any
+  sessionData: {
+    questions?: Array<{
+      userAnswer?: string;
+      correct_answer: string;
+    }>;
+    flashcards?: Array<unknown>;
+    studyTime?: number;
+    explanation?: string;
+  }
 ) {
   try {
     // Get current progress
@@ -151,7 +159,7 @@ export async function updateStudyProgress(
       case 'quiz':
         if (sessionData.questions) {
           const totalQuestions = sessionData.questions.length;
-          const correctAnswers = sessionData.questions.filter((q: any) => 
+          const correctAnswers = sessionData.questions.filter((q) => 
             q.userAnswer === q.correct_answer
           ).length;
           quizScore = Math.max(quizScore, Math.round((correctAnswers / totalQuestions) * 100));

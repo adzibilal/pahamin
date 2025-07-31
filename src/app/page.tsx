@@ -167,12 +167,12 @@ export default async function Home() {
               <div className="bg-surface rounded-2xl p-8 shadow-soft">
                 <div className="flex items-center mb-6">
                   <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4">
-                    <Image
+                    {/* <Image
                       src="/testimonial-student-1.png"
                       alt="Foto profil siswa SMA yang menggunakan Pahamin"
                       fill
                       className="object-cover"
-                    />
+                    /> */}
                   </div>
                   <div>
                     <h4 className="font-semibold text-text-primary">Sarah, Siswa SMA</h4>
@@ -180,19 +180,19 @@ export default async function Home() {
                   </div>
                 </div>
                 <p className="text-text-secondary italic">
-                  "Pahamin membantu saya memahami konsep fisika yang sulit dengan penjelasan yang sangat jelas. Sekarang belajar jadi lebih menyenangkan!"
+                  &ldquo;Pahamin membantu saya memahami konsep fisika yang sulit dengan penjelasan yang sangat jelas. Sekarang belajar jadi lebih menyenangkan!&rdquo;
                 </p>
               </div>
 
               <div className="bg-surface rounded-2xl p-8 shadow-soft">
                 <div className="flex items-center mb-6">
                   <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4">
-                    <Image
+                    {/* <Image
                       src="/testimonial-student-2.png"
                       alt="Foto profil mahasiswa yang menggunakan Pahamin"
                       fill
                       className="object-cover"
-                    />
+                    /> */}
                   </div>
                   <div>
                     <h4 className="font-semibold text-text-primary">Ahmad, Mahasiswa</h4>
@@ -200,7 +200,7 @@ export default async function Home() {
                   </div>
                 </div>
                 <p className="text-text-secondary italic">
-                  "Generator soal di Pahamin sangat membantu untuk persiapan ujian. Soal-soalnya berkualitas dan pembahasannya detail."
+                  &ldquo;Generator soal di Pahamin sangat membantu untuk persiapan ujian. Soal-soalnya berkualitas dan pembahasannya detail.&rdquo;
                 </p>
               </div>
             </div>

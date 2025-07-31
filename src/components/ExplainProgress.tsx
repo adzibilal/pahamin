@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { updateStudyProgress } from '@/lib/database';
 
 interface ExplainProgressProps {
@@ -20,7 +20,7 @@ export default function ExplainProgress({ userId, topic, explanation }: ExplainP
     }
   }, [explanation, isTracking]);
 
-  const saveProgress = async () => {
+  const saveProgress = useCallback(async () => {
     if (!startTime) return;
 
     const endTime = new Date();
@@ -34,7 +34,7 @@ export default function ExplainProgress({ userId, topic, explanation }: ExplainP
     } catch (error) {
       console.error('Error saving progress:', error);
     }
-  };
+  }, [startTime, userId, topic, explanation]);
 
   useEffect(() => {
     return () => {
@@ -42,7 +42,7 @@ export default function ExplainProgress({ userId, topic, explanation }: ExplainP
         saveProgress();
       }
     };
-  }, [isTracking]);
+  }, [isTracking, saveProgress]);
 
   return null; // This component doesn't render anything visible
 } 

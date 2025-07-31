@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { updateStudyProgress } from '@/lib/database';
 
 interface ProgressTrackerProps {
   userId: string;
   topic: string;
   sessionType: 'explain' | 'quiz' | 'flashcard';
-  sessionData: any;
+  sessionData: Record<string, unknown>;
   onProgressUpdate?: () => void;
 }
 
@@ -28,7 +28,7 @@ export default function ProgressTracker({
     }
   }, [sessionData, isTracking]);
 
-  const saveProgress = async () => {
+  const saveProgress = useCallback(async () => {
     if (!startTime) return;
 
     const endTime = new Date();
@@ -46,7 +46,7 @@ export default function ProgressTracker({
     } catch (error) {
       console.error('Error saving progress:', error);
     }
-  };
+  }, [startTime, userId, topic, sessionType, sessionData, onProgressUpdate]);
 
   useEffect(() => {
     return () => {
@@ -54,7 +54,7 @@ export default function ProgressTracker({
         saveProgress();
       }
     };
-  }, [isTracking]);
+  }, [isTracking, saveProgress]);
 
   return null; // This component doesn't render anything visible
 } 

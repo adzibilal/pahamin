@@ -6,7 +6,20 @@ interface SessionContentProps {
 
 export default function SessionContent({ session }: SessionContentProps) {
   const renderContent = () => {
-    const content = session.content as any;
+    const content = session.content as {
+      explanation?: string;
+      content?: string;
+      questions?: Array<{
+        question: string;
+        options: string[];
+        correct_answer: string;
+        explanation?: string;
+      }>;
+      flashcards?: Array<{
+        question: string;
+        answer: string;
+      }>;
+    };
 
     switch (session.type) {
       case 'explain':
@@ -33,7 +46,7 @@ export default function SessionContent({ session }: SessionContentProps) {
                 Soal Latihan: {session.topic}
               </h3>
               <div className="space-y-4">
-                {content.questions?.map((question: any, index: number) => (
+                {content.questions?.map((question, index: number) => (
                   <div key={index} className="border border-border rounded-xl p-4">
                     <h4 className="font-semibold text-text-primary mb-3">
                       Soal {index + 1}
@@ -83,7 +96,7 @@ export default function SessionContent({ session }: SessionContentProps) {
                 Flashcard: {session.topic}
               </h3>
               <div className="space-y-4">
-                {content.flashcards?.map((card: any, index: number) => (
+                {content.flashcards?.map((card, index: number) => (
                   <div key={index} className="border border-border rounded-xl p-4">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">

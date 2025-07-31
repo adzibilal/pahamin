@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { saveStudySession } from '@/lib/database';
 import ExplainProgress from './ExplainProgress';
+import { ExplainResponse } from '@/lib/gemini';
 
 export default function ExplainForm() {
   const [topic, setTopic] = useState('');
   const [style, setStyle] = useState('singkat');
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<ExplainResponse | null>(null);
   const { userId } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {

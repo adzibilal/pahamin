@@ -11,7 +11,7 @@ export interface StudySession {
   user_id: string;
   topic: string;
   type: 'explain' | 'quiz' | 'flashcard';
-  content: any;
+  content: Record<string, unknown>;
   created_at: string;
   updated_at: string;
 }

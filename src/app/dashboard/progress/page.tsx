@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { getProgressStats, getUserProgress, getTopicsByUser } from "@/lib/database";
+import { getProgressStats, getUserProgress } from "@/lib/database";
 import Link from "next/link";
 import ProgressCard from "@/components/ProgressCard";
 
@@ -12,10 +12,9 @@ export default async function ProgressPage() {
   }
 
   // Fetch progress data
-  const [stats, progress, topics] = await Promise.all([
+  const [stats, progress] = await Promise.all([
     getProgressStats(userId),
     getUserProgress(userId),
-    getTopicsByUser(userId),
   ]);
 
   const formatTime = (minutes: number) => {
