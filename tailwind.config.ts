@@ -11,11 +11,11 @@ const config: Config = {
       colors: {
         // Brand Colors
         primary: {
-          DEFAULT: '#D8E710', // Primary lime green
-          hover: '#BAC900',    // Primary hover state
+          DEFAULT: '#FEC831', // Primary lime green
+          hover: '#FFD560',    // Primary hover state
         },
         secondary: {
-          DEFAULT: '#8A78F2', // Secondary purple
+          DEFAULT: '#3271E6', // Secondary purple
         },
         
         // Grayscale Palette
