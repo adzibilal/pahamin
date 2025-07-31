@@ -1,12 +1,14 @@
+'use client';
+
 import Link from "next/link";
-import { auth } from "@clerk/nextjs/server";
+import { useAuth } from "@clerk/nextjs";
 import SignInButton from "@/components/SignInButton";
 import SignUpButton from "@/components/SignUpButton";
 import UserButton from "@/components/UserButton";
 import Image from "next/image";
 
-export default async function Navbar() {
-  const { userId } = await auth();
+export default function Navbar() {
+  const { userId } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 no-print">
